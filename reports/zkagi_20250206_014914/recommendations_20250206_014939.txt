@@ -1,0 +1,29 @@
+**Detailed Investment Recommendations:**
+
+Based on the provided pitch deck, I recommend investing in Zkagi (zkagi) as a high-growth opportunity in the web3 and AI space. Here's a breakdown of the key aspects:
+
+1. **Unique Value Proposition:** Zkagi's innovative use of zero-knowledge technology with hardware acceleration on a decentralized GPU infrastructure provides a competitive edge in confidential computing, making it an attractive solution for large enterprises and AI model developers.
+2. **Scalability and Performance:** The zkagi platform's high-performance capabilities and cost-efficiency make it an ideal choice for LLMs (Large Language Models) and complex AI models hosted on the network.
+3. **Business Model:** A diversified revenue stream through direct usage of on-chain AI agents, compute fees, and partnerships with partner projects using Zkagi APIs/ building agents on the platform presents a solid foundation for growth.
+4. **Token Utility:** The token's utility in rewards for compute providers, fees for end-user digital assistants/agents, and staking rewards in ecosystem AI coins/native tokens indicates a strong potential for token appreciation.
+5. **Traction and Partnerships:** Securing 60+ partners, including well-established companies like Aethir Cloud and Autonomys, demonstrates the project's credibility and market appeal.
+
+**Investment Thesis:**
+
+We believe Zkagi has significant growth potential due to its innovative technology, diversified revenue streams, and strong partnerships. The token's utility and competitive advantages in confidential computing make it an attractive investment opportunity for those seeking a high-growth web3 and AI venture.
+
+**Recommendation:**
+
+* Allocate a minimum of $50,000 to invest in the private round.
+* Prioritize acquiring ecosystem agent coins through strategic input to private investors and KOLs.
+* Monitor the token's price movements and adjust the investment strategy accordingly.
+
+**Follow-up Questions for Potential Investors:**
+
+1. Can you elaborate on the specifics of the zero-knowledge technology used in Zkagi, and how it differs from existing solutions?
+2. How do you plan to expand your ecosystem beyond the current 100k+ community, and what partnerships are being pursued for further growth?
+3. What sets the zkagi platform apart from other AI model hosting platforms on Solana, and how will you maintain competitive advantages?
+4. Can you provide more details about the revenue projections for each segment of the business model, and how they align with your overall growth strategy?
+5. How do you plan to address potential scalability challenges as the network grows, and what measures are in place to ensure the platform's performance remains high?
+
+Note: These questions are designed to delve deeper into specific aspects of the project, ensuring that potential investors have a comprehensive understanding of Zkagi's vision, technology, and growth strategy.

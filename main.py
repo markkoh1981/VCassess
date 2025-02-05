@@ -31,6 +31,25 @@ def extract_text(content):
     except Exception as e:
         raise ValueError(f"Error extracting text: {e}")
 
+
+
+def advisory_potential(text):
+            """Assess the project suitability for an advisory deal."""
+            try:
+                with open('advisory_considerations.txt', 'r', encoding='utf-8') as f:
+                    advisory_knowledge = f.read()
+                
+                response = ollama.chat(
+                    model="llama3.2:latest",  # Replace with your actual model name
+                    messages=[
+                        {"role": "system", "content": "You are an advisor assessing the suitability of a project for an advisory deal."},
+                        {"role": "user", "content": f"Based on the following advisory considerations:\n{advisory_knowledge}\n\nAssess the suitability of this project for an advisory deal: {text}"}
+                    ]
+                )
+                return response['message']['content']
+            except Exception as e:
+                raise ValueError(f"Error in advisory potential assessment: {e}")
+
 def assess_risk(text):
     """Assess the investibility and risk of the deck."""
     try:
@@ -45,14 +64,17 @@ def assess_risk(text):
     except Exception as e:
         raise ValueError(f"Error in risk assessment: {e}")
 
-def project_roi(text):
-    """Project ROI multiplier based on deck analysis."""
+def project_scoring(text):
+    """Score the project based on criteria."""
     try:
+        with open('judging_criteria.txt', 'r', encoding='utf-8') as f:
+                    scoring = f.read()
+        
         response = ollama.chat(  # Corrected to chat.completions.create
             model="llama3.2:latest",  # Replace with your actual model name
             messages=[
-                {"role": "system", "content": "You are a financial advisor projecting ROI."},
-                {"role": "user", "content": f"Project ROI multiplier and possible returns for this deck: {text}"}
+                {"role": "system", "content": "You are a expert startup and business judge."},
+                {"role": "user", "content": f"assess the startup with their data here {text} based strictly on the following criteria: \n{scoring}\n\n use assumptions if necessary."}
             ]
         )
         return response['message']['content']
@@ -65,8 +87,8 @@ def generate_recommendations(text):
         response = ollama.chat(  # Corrected to chat.completions.create
             model="llama3.2:latest",  # Replace with your actual model name
             messages=[
-                {"role": "system", "content": "You are a financial advisor providing investment recommendations."},
-                {"role": "user", "content": f"Based on this text extracted from a pdf deck, provide detailed investment recommendations: {text}"}
+                {"role": "system", "content": "You are a VC associate and an expert in web3, providing investment recommendations to potential investors"},
+                {"role": "user", "content": f"Based on this text extracted from a deck, provide detailed investment recommendations. Next, list out at least 5 questions that can be copy and pasted by the potential investors to ask the project founders as a followup. If the text appears to be disjointed, do your best to interpret the subject as a investment pitch: {text}"}
             ]
         )
         return response['message']['content']
@@ -187,12 +209,14 @@ def process_files_in_directory(directory):
                                 project_name = os.path.splitext(filename)[0]
                                 report_directory = create_report_directory(project_name)
                                 risk_assessment = assess_risk(text)
-                                roi_projection = project_roi(text)
+                                scoring = project_scoring(text)
                                 recommendations = generate_recommendations(text)
+                                advisory = advisory_potential(text)
 
                                 save_report_in_directory(risk_assessment, "risk_assessment", report_directory)
-                                save_report_in_directory(roi_projection, "roi_projection", report_directory)
+                                save_report_in_directory(scoring, "project_score", report_directory)
                                 save_report_in_directory(recommendations, "recommendations", report_directory)
+                                save_report_in_directory(advisory, "advisory", report_directory)
 
                                 # Mark the file as processed
                                 with open("processed_files.txt", 'a', encoding='utf-8') as f:

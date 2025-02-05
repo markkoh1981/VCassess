@@ -1,0 +1,131 @@
+Use the following judging sheet to evaluate the project. 
+
+
+### 1. **Team (Weight: 25%)**
+   - **Experience and Expertise (30% of Team Score)**
+     - Relevant industry experience
+     - Track record of success
+     - Technical and business expertise
+   - **Complementary Skills (20% of Team Score)**
+     - Diversity of skills within the team
+     - Ability to cover all critical functions (e.g., product, sales, operations)
+   - **Leadership and Vision (20% of Team Score)**
+     - Strong leadership qualities
+     - Clear and compelling vision for the company
+   - **Commitment and Cohesion (15% of Team Score)**
+     - Full-time commitment
+     - Team cohesion and ability to work together
+   - **Advisors and Network (15% of Team Score)**
+     - Quality and relevance of advisors
+     - Strength of professional network
+
+### 2. **Market Opportunity (Weight: 20%)**
+   - **Market Size (30% of Market Opportunity Score)**
+     - Total Addressable Market (TAM)
+     - Serviceable Addressable Market (SAM)
+     - Serviceable Obtainable Market (SOM)
+   - **Market Growth (20% of Market Opportunity Score)**
+     - Historical and projected growth rates
+   - **Market Trends (20% of Market Opportunity Score)**
+     - Alignment with current and future trends
+   - **Competitive Landscape (20% of Market Opportunity Score)**
+     - Number and strength of competitors
+     - Barriers to entry
+   - **Customer Pain Points (10% of Market Opportunity Score)**
+     - Severity and urgency of the problem being solved
+
+### 3. **Product/Technology (Weight: 20%)**
+   - **Innovation and Uniqueness (30% of Product/Technology Score)**
+     - Degree of innovation
+     - Unique value proposition
+   - **Product-Market Fit (25% of Product/Technology Score)**
+     - Evidence of demand
+     - Customer feedback and validation
+   - **Scalability (20% of Product/Technology Score)**
+     - Potential to scale geographically and across customer segments
+   - **Technology Maturity (15% of Product/Technology Score)**
+     - Stage of development (concept, prototype, MVP, etc.)
+   - **Intellectual Property (10% of Product/Technology Score)**
+     - Patents, trademarks, and other IP protections
+
+### 4. **Business Model (Weight: 15%)**
+   - **Revenue Streams (30% of Business Model Score)**
+     - Diversity and sustainability of revenue streams
+   - **Pricing Strategy (20% of Business Model Score)**
+     - Competitive pricing
+     - Profit margins
+   - **Customer Acquisition Strategy (20% of Business Model Score)**
+     - Cost of customer acquisition (CAC)
+     - Channels and tactics for acquiring customers
+   - **Unit Economics (20% of Business Model Score)**
+     - Lifetime Value (LTV) to CAC ratio
+     - Contribution margin
+   - **Partnerships and Alliances (10% of Business Model Score)**
+     - Strategic partnerships and alliances
+
+### 5. **Traction and Metrics (Weight: 10%)**
+   - **Revenue Growth (30% of Traction and Metrics Score)**
+     - Historical and projected revenue growth
+   - **User Growth (20% of Traction and Metrics Score)**
+     - Number of users/customers
+     - Growth rate of user base
+   - **Engagement Metrics (20% of Traction and Metrics Score)**
+     - Active users, retention rates, etc.
+   - **Key Performance Indicators (KPIs) (20% of Traction and Metrics Score)**
+     - Relevant KPIs for the industry
+   - **Milestones Achieved (10% of Traction and Metrics Score)**
+     - Key milestones reached (e.g., product launches, funding rounds)
+
+### 6. **Financials (Weight: 10%)**
+   - **Financial Projections (30% of Financials Score)**
+     - Realistic and well-supported financial projections
+   - **Burn Rate and Runway (25% of Financials Score)**
+     - Current burn rate
+     - Months of runway remaining
+   - **Funding Requirements (20% of Financials Score)**
+     - Amount of funding sought
+     - Use of funds
+   - **Profitability Path (15% of Financials Score)**
+     - Clear path to profitability
+   - **Financial Health (10% of Financials Score)**
+     - Current financial health (e.g., cash flow, debt)
+
+### 7. **Risk Assessment (Weight: 10%)**
+   - **Market Risk (30% of Risk Assessment Score)**
+     - Potential market changes or disruptions
+   - **Technology Risk (25% of Risk Assessment Score)**
+     - Risks related to technology development and scalability
+   - **Team Risk (20% of Risk Assessment Score)**
+     - Risks related to team stability and capability
+   - **Financial Risk (15% of Risk Assessment Score)**
+     - Risks related to financial sustainability
+   - **Regulatory Risk (10% of Risk Assessment Score)**
+     - Potential regulatory challenges
+
+### **Final Score Calculation**
+Each criterion is scored on a scale of 1 to 10, and the scores are weighted according to the percentages provided. The final score is calculated as follows:
+
+\[
+\text{Final Score} = (\text{Team Score} \times 0.25) + (\text{Market Opportunity Score} \times 0.20) + (\text{Product/Technology Score} \times 0.20) + (\text{Business Model Score} \times 0.15) + (\text{Traction and Metrics Score} \times 0.10) + (\text{Financials Score} \times 0.10) + (\text{Risk Assessment Score} \times 0.10)
+\]
+
+The final score will range from 1 to 100, with higher scores indicating a more attractive investment opportunity.
+
+### **Example**
+If a startup scores the following:
+- Team: 8
+- Market Opportunity: 9
+- Product/Technology: 7
+- Business Model: 8
+- Traction and Metrics: 7
+- Financials: 6
+- Risk Assessment: 7
+
+The final score would be calculated as:
+\[
+(8 \times 0.25) + (9 \times 0.20) + (7 \times 0.20) + (8 \times 0.15) + (7 \times 0.10) + (6 \times 0.10) + (7 \times 0.10) = 2 + 1.8 + 1.4 + 1.2 + 0.7 + 0.6 + 0.7 = 8.4 \times 10 = 84
+\]
+
+Thus, the final score would be **84/100**.
+
+This scoring sheet provides a structured and comprehensive way to evaluate startup investment opportunities, ensuring that all critical aspects are considered.

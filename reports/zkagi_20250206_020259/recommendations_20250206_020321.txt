@@ -1,0 +1,32 @@
+**Detailed Investment Recommendations:**
+
+1. **Investment Thesis:** We recommend investing in Zkagi, a high-performance privacy-deal network that implements true blue zkML innovations and practical zk-verified inferencing on open-source LLMs inside TEEs.
+
+2. **Risk-Reward Profile:** We believe Zkagi offers an attractive risk-reward profile due to its:
+	* Low $5 million funding round value (200k tokens left at 5M FDV)
+	* High float, ensuring a liquid market
+	* Devised low FDV and high float for effective launch and high growth potential
+
+3. **Investment Stage:** We recommend investing in the private round, taking advantage of the bonus privileges offered to early investors, such as additional allocation and higher staking multipliers.
+
+4. **Token Utility:** The token's utility is extensive, with rewards to compute providers, fees for end-user digital assistants/agents, and staking rewards in ecosystem AI coins and native tokens.
+
+5. **Growth Potential:** Zkagi's partnership network (60+ partners secured), rolled-out base infrastructure and end-user product, and growing community of 100k+ across various socials demonstrate significant growth potential.
+
+**Follow-up Questions for Potential Investors:**
+
+1. Can you elaborate on the partnership with Aethir Cloud, Autonomys, and other notable players in the AI space? How do these partnerships contribute to Zkagi's growth?
+
+2. How does the TEE-based approach ensure confidentiality and security for AI models and data?
+
+3. What specific AI applications or use cases can we expect to see emerge from Zkagi's network in the near future?
+
+4. Can you provide more details on the staking rewards mechanism and how they will be distributed among ecosystem agents and native token holders?
+
+5. How do you plan to address scalability and latency concerns as the network grows, particularly with the integration of Solana and wrapped TGE tokens?
+
+6. What are the plans for further development and expansion of the base infrastructure and end-user product, given the momentum from existing partnerships and community adoption?
+
+7. Can you provide more information on the bonus privileges offered to early investors, including additional allocation and higher staking multipliers? How do these incentives align with your growth strategy?
+
+8. What is the expected timeline for the launch of Zkagi's T1 Launchpad Token on Solana, wrapped on Base TGE, and subsequent listing on other platforms like Gate (later by Bitoin)?
