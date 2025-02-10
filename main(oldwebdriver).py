@@ -85,8 +85,8 @@ def save_report(report_content, report_type, project_name):
 
 
 
-def get_docsend_content(url, email):
-    """Scrape content from a DocSend link."""
+def get_web_content(url, email):
+    """Scrape content from a web link."""
     try:
             
         # Set up Selenium WebDriver:
@@ -99,7 +99,7 @@ def get_docsend_content(url, email):
         driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROME).install()), options=options)
 
                       
-         # Open the DocSend link
+         # Open the web link
         driver.get(url)
             
         # Enter email address
@@ -117,11 +117,11 @@ def get_docsend_content(url, email):
         driver.quit()
         return content
     except Exception as e:
-        raise ValueError(f"Error scraping DocSend content: {e}")
+        raise ValueError(f"Error scraping web content: {e}")
 
 def main():
-        # Get the DocSend link and email address
-        docsend_url = "https://docsend.com/view/zgkukn7wsgimvf2w"  # Replace with actual DocSend link
+        # Get the web link and email address
+        web_url = "https://docsend.com/view/zgkukn7wsgimvf2w"  # Replace with actual DocSend link
         email = "mark@vxglobal.sg"  # Replace with actual email address
         project_name = "Chainsatlas"  # Replace with actual project name
         
