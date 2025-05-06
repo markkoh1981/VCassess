@@ -1,0 +1,209 @@
+🌊 Liquify: Unlocking a New Layer of Liquidity
+
+cofounders: Iuga (CEO), Andy Puscas (COO)
+
+Tired of watching capital sit idle under vesting, staking, or future yield promises? Welcome to Liquify—the first platform that turns any locked value into tradable liquidity. Whether it’s pre-TGE allocations, staking rewards, or future APRs, Liquify enables instant capital efficiency through liquid tokens.
+
+🚀 Use Cases:
+- Partners: Tokenize pre-TGE deals, forward-sell future staking rewards, or unlock funding from projected APRs.
+- Contributors: Gain access to discounted deals, earn from future yields, and trade tokenized revenue streams instantly.
+
+🌊 Why Liquify?
+1. Trade locked allocations before TGE.
+2. Sell staking yields upfront.
+3. Unlock APR-based future income now.
+4. No collateral. No lock-ins. No spreadsheets.
+5. 100% on-chain. No middle-man. Only Code.
+
+Reimagine locked assets as liquid opportunities. Liquify flows liquidity back into your hands - where it belongs. In DeFi 2.0, the future isn’t locked - it’s liquid. And liquidity isn’t just freedom - it’s power.
+
+🌐  Discover Liquify: Website (https://liquify.ventures/) | Docs (https://docs.liquify.ventures/) | Deck (https://docsend.com/view/updfqw7ndmr9p7ab) | Litepaper (https://liquify.ventures/assets/whitepaper/Liquify-Whitepaper.pdf) | Linktree (https://linktr.ee/LiquifyVentures) | Telegram (https://t.me/LiquifyVentures) | X (Twitter)  (https://x.com/LiquifyVentures)| Partners (http://liquify.ventures/partners)
+ 
+Capital shouldn’t sit. Put your assets to work.
+
+Our p2p trades are live now, make an offer or find a deal: 
+https://liquify.ventures/welcome?referral=rektsurvivor
+
+What is Liquify?
+Liquify is a decentralized platform designed to simplify and revolutionize how token allocations are managed in blockchain projects. Whether you’re a project creator, an investor, or part of a community VC, Liquify gives you the tools to access liquidity, transparency, and efficiency.
+
+Why Choose Liquify?
+Unlock Liquidity: Trade or hold tokens even before they’re unlocked.
+
+Seamless Management: Automate token vesting and distributions effortlessly.
+
+Trust and Transparency: Powered by audited smart contracts, ensuring secure and fair transactions.
+
+Who is it for?
+Liquify is built for:
+
+Initiators: Project creators, KOLs, VCs, community VCs, validators and more.
+
+Investors: Individuals or groups looking to participate in early-stage projects.
+
+What’s Next?
+Explore the docs to learn more about how Liquify works, its unique features, and how you can become part of the future of decentralized finance.
+
+Get started today and take control of your blockchain investments like never before!
+
+
+1. Liquid Vesting
+At the heart of Liquify is the Liquid Vesting mechanism. Traditionally, tokens are locked for long periods due to vesting schedules, preventing flexibility for both initiators and investors. Liquid Vesting solves this by introducing synthetic tokens that represent the locked tokens.
+
+These synthetic tokens allow:
+
+Immediate liquidity: Investors can trade or hold tokens without waiting for the vesting period to end.
+
+Flexibility for initiators: Project creators can raise funds earlier while maintaining a vesting structure.
+
+How it works:
+
+Synthetic tokens are issued when an allocation is created.
+
+They can be traded anywhere or held by investors.
+
+As vesting stages complete, synthetic tokens are exchanged for the real tokens.
+
+2. Synthetic Tokens
+Synthetic tokens are a unique feature of Liquify. They are temporary tokens that represent future vested tokens.
+
+Key characteristics:
+
+Tradeable: Synthetic tokens can be bought or sold on any platform, giving investors access to liquidity even before the real tokens are distributed.
+
+Secure: Ownership of synthetic tokens guarantees the right to claim real tokens once the vesting schedule progresses.
+
+1:1 Parity: Synthetic tokens always maintain a 1:1 value with the real tokens they represent.
+
+Tokenization: Synthetic tokens digitize and tokenize an investor's allocation, creating a liquid and tradeable representation of their future vested tokens.
+
+Example:
+An investor holding 1,000 synthetic tokens of Hyperliquid (HYPE) will receive exactly 1,000 real HYPE tokens once the vesting schedule completes.
+
+3. Key Features Overview
+Liquify’s platform is built to simplify and enhance token vesting and allocation:
+
+Automated Processes: Liquify minimizes manual intervention and errors.
+
+Secondary Market: Synthetic tokens can be traded easily, ensuring liquidity throughout the project lifecycle.
+
+Security and Transparency: Smart contracts ensure all transactions are secure and visible on the blockchain.
+
+Liquify is a platform that lets you invest in private token deals before they launch (TGE) and trade them instantly. It’s designed to provide flexibility, transparency, and liquidity for both project creators and investors.
+
+Traditional private token investments lock your funds until tokens are released (after TGE). Liquify issues synthetic tokens that represent your locked tokens, which you can trade immediately, giving you early access to liquidity.
+
+Liquify is designed for:
+
+Initiators: Project creators, venture capitalists, and validators.
+
+Investors: Anyone looking to invest in early-stage blockchain projects.
+
+Community VCs: Groups pooling resources to invest in private deals.
+
+Investing
+Browse available projects on Liquify.
+
+Select a project that interests you.
+
+Invest the desired amount before the funding deadline.
+
+No, everything happens directly from your wallet. You remain in control of your funds at all times.
+⚠️ Important: Never share your password, seed phrase, or private keys with anyone.
+
+Synthetic tokens digitize and tokenize an investor's allocation, creating a liquid and tradeable representation of their future vested tokens. They can be:
+
+Held until they convert into real tokens during vesting.
+
+Traded immediately on Liquify’s secondary market.
+
+You can claim your synthetic tokens that represent your share in the project. Once the vesting schedule begins, you can claim the real tokens at each stage.
+
+For each project, initiators decide if KYC is mandatory for investing in that project.
+
+Liquify supports various ERC-20 tokens, such as USDT, USDC, and more. Initiators can set a different token for investments for each project.
+
+Yes, you can invest in as many projects as you like, provided you meet the requirements for each.
+
+Yes, each project has a minimum investment cap, which is clearly stated in the project details.
+
+If you miss the deadline, you will not be able to invest in that round. However, you can still participate in other projects or buy synthetic tokens on the secondary market anytime.
+
+A 2.5% fee is applied to all investments conducted on the platform.
+
+Trading
+Synthetic tokens are ERC-20 tokens, giving you full flexibility. You can:
+
+Trade them on Liquify’s secondary market using the platform's P2P order books.
+
+Transfer them to others as gifts or payments.
+
+Sell them on any platform or marketplace that supports ERC-20 tokens.
+
+Use them in other DeFi features (e.g.: as collateral for lending & borrowing) or other dApps on top of Liquify. 
+
+The choice is entirely yours!
+
+If you sell your synthetic tokens, the buyer will have the right to claim the corresponding real tokens when the vesting schedule progresses.
+
+Referral
+You earn bonuses by inviting new investors or initiators to Liquify. Rewards are distributed based on predefined criteria.
+
+Security
+Liquify uses audited smart contracts and follows blockchain security and software development best practices to protect your funds and transactions.
+
+Roadmap:
+
+Q1
+Mainnet Launch
+The Liquify V1 app goes live on Binance Smart Chain (BSC), bringing Liquid Vesting to the DeFi community.
+
+OTC Module
+Launching a permissionless OTC feature that allows users to create unique links for on-chain over-the-counter deals.
+
+TGE
+The launch of the $LQFY token on Ethereum, enabling governance and further ecosystem growth.
+
+Whitelisted/Private Investments
+Initiators can request specific conditions for investments, such as address whitelisting or private rounds.
+
+Projects Launching - Liquid Tokens
+Private token rounds will be held directly on Liquify, with liquid tokens available from the start.
+
+Q2
+Degen Module (Permissionless Trading)
+Trade your allocations directly on-chain with full permissionless functionality.
+
+Initiators’ Buffer
+Users can contribute through their favorite initiator’s project fund.
+
+KYCed Projects
+Projects can opt for mandatory KYC verification for all investors, ensuring compliance and trust.
+
+Q3
+P2P Order Book
+On-chain marketplace for trading liquid tokens via order-book style transactions, providing flexibility and liquidity.
+
+Liquify Lite
+Simplified project contributions, enabling investments in any project with just one click.
+
+Resell Feature
+Investors can act as initiators by reselling their token allocations, creating a new layer of interaction.
+
+Q4
+Liquify Grants & Labs Incubator
+Support for developers and innovators through grants and an accelerator program to build within the Liquify ecosystem.
+
+RWA (Real-World Asset Tokenization)
+Bridging DeFi with the real world by tokenizing real-world assets.
+
+Telegram Mini-App
+A lightweight app integrated with Telegram, making Liquify’s features accessible directly within the platform.
+
+TradFi Tokenization
+Expanding into traditional finance by tokenizing financial instruments, bridging the gap between TradFi and DeFi.
+
+Liquidity-Free VC
+Empower users to act as their own venture capitalists without requiring liquidity upfront.
+
+Our roadmap reflects our commitment to continuous innovation and community growth. With these milestones, we aim to make Liquify the go-to platform for decentralized and tokenized investments.

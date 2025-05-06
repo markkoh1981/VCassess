@@ -1,0 +1,54 @@
+A. Revenue/Customer Synergies
+Client Relationship: Could the new startup become a customer of your portfolio company (or vice versa)?
+
+Example: Your portfolio company sells SaaS tools, and the new startup needs those tools.
+
+Channel Expansion: Can the new startup provide distribution (e.g., access to new markets, customer segments)?
+
+Example: The startup has an enterprise sales team; your portfolio company can leverage it.
+
+B. Strategic/Operational Synergies
+Technology Integration: Does the startup’s tech complement or enhance your portfolio company’s product?
+
+Example: APIs, white-labeling, or embedding one product into another.
+
+Supply Chain/Supplier Relationship: Can the startup reduce costs or improve efficiency (e.g., raw materials, logistics, manufacturing)?
+
+Shared Infrastructure: Can they share resources (e.g., cloud services, manufacturing facilities)?
+
+C. Partnership & Go-To-Market (GTM) Synergies
+Co-Marketing: Can they collaborate on campaigns, events, or content to amplify reach?
+
+Joint Sales Efforts: Can they bundle products or cross-sell (e.g., "Recommended partners")?
+
+Strategic Alliance: Do they share a common competitor or mission where collaboration strengthens positioning?
+
+D. Knowledge/Resource Synergies
+Talent/Expertise Sharing: Does the startup bring specialized skills (e.g., AI, regulatory knowledge) that your portfolio company lacks?
+
+Data Sharing: Can they exchange insights (e.g., customer behavior, market trends) to improve products?
+
+
+Feasibility: How easily can the synergy be executed? (Integration complexity, legal barriers, cultural fit.)
+
+Scalability: Is this a one-off opportunity or a repeatable growth lever?
+
+Defensibility: Does the synergy create a moat (e.g., exclusive partnership, unique tech integration)?
+
+Alignment with Goals: Does this help the portfolio company hit its KPIs (revenue, market share, product roadmap)?
+
+Red Flags (False Synergies)
+One-Sided Value: The relationship benefits only one party.
+
+High Execution Cost: Integration requires disproportionate effort (e.g., rebuilding tech stacks).
+
+Strategic Misalignment: The partnership distracts from core objectives.
+
+Actionable Output
+After analysis, classify the synergy as:
+
+Immediate Opportunity (e.g., ready-to-buy customer).
+
+Strategic Long-Term Play (e.g., co-developing a new product).
+
+Low Priority (minimal impact or misaligned incentives)
