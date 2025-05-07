@@ -4,6 +4,9 @@ import json
 import datetime
 import re
 from pdfreader import SimplePDFViewer
+import markdown2
+from weasyprint import HTML, CSS
+from weasyprint.text.fonts import FontConfiguration
 # from playwright.sync_api import sync_playwright # Playwright might be needed if website scraping is still a requirement for pitches, let's keep it commented for now.
 
 # --- Configuration ---
@@ -55,44 +58,34 @@ def get_company_name_from_filename(filename):
     return os.path.splitext(filename)[0]
 
 def extract_cofounder_names(text_content, company_name_a):
-    """Extracts cofounder names from text content or returns a placeholder."""
-    # Search for keywords like "Founders:", "Team:", "Point of Contact:"
-    # This is a simplistic approach and might need refinement based on actual document structures.
-    text_lower = text_content.lower()
-    keywords = ["founders:", "founder:", "team:", "point of contact:", "contact person:"]
-    found_names = []
+    """Extracts cofounder names using the Ollama LLM or returns a placeholder."""
+    prompt = f"""
+    You are an expert in extracting key information from text. Your task is to identify the names of cofounders or key team members from the provided text. If no cofounder names are explicitly mentioned, return 'the Team at {company_name_a}'.
 
-    for keyword in keywords:
-        if keyword in text_lower:
-            # Try to extract text following the keyword (e.g., up to the next sentence or a certain length)
-            try:
-                start_index = text_lower.find(keyword) + len(keyword)
-                # Look for a sentence or a reasonable chunk of text after the keyword.
-                # This is a heuristic and might need to be more robust.
-                potential_names_section = text_content[start_index : start_index + 200] # Look in the next 200 chars
-                
-                # A very basic attempt to identify names - this likely needs a more sophisticated NLP approach
-                # or clearer patterns in the documents.
-                # For now, let's assume the line after the keyword might contain names.
-                lines = potential_names_section.splitlines()
-                if lines:
-                    first_line_after_keyword = lines[0].strip()
-                    if first_line_after_keyword and len(first_line_after_keyword) < 100: # Avoid very long lines
-                         # Simplistic: assume the first line after keyword contains names
-                        # This is a placeholder for a more robust extraction logic
-                        if len(first_line_after_keyword.split()) > 1 and len(first_line_after_keyword.split()) < 7: # Heuristic for names
-                            found_names.append(first_line_after_keyword)
-                            # For now, take the first finding. More sophisticated logic could find multiple.
-                            break 
-            except Exception as e:
-                print(f"Error during cofounder name extraction: {e}")
-                continue
-    
-    if found_names:
-        # Join multiple found names if any, or return the first one found
-        return ", ".join(found_names)
-    else:
-        return f"the Team at {company_name_a}" # Placeholder
+    **Text Content:**
+    {text_content}
+
+    **Output Format:**
+    - If cofounder names are found: "Cofounders: [Name1, Name2, ...]"
+    - If no names are found: "Cofounders: the Team at {company_name_a}"
+    """
+
+    try:
+        response = ollama.chat(
+            model="llama3.2:latest",
+            messages=[
+                {"role": "system", "content": "You are an expert in extracting cofounder names from text."},
+                {"role": "user", "content": prompt}
+            ]
+        )
+        result = response['message']['content']
+        if "Cofounders:" in result:
+            return result.replace("Cofounders:", "").strip()
+        else:
+            return f"the Team at {company_name_a}"
+    except Exception as e:
+        print(f"Error during cofounder name extraction using LLM: {e}")
+        return f"the Team at {company_name_a}"  # Fallback placeholder
 
 # --- Core Synergy Analysis Function ---
 def analyze_synergy(pitch_company_name, pitch_content, portfolio_company_name, portfolio_content, synergy_criteria_text):
@@ -100,7 +93,7 @@ def analyze_synergy(pitch_company_name, pitch_content, portfolio_company_name, p
     print(f"Analyzing synergy between {pitch_company_name} and {portfolio_company_name}...")
     
     prompt = f"""
-    You are a VC Analyst. Your task is to identify and evaluate potential synergies between a new pitch (Folder A company) and an existing portfolio company (Folder B company).
+    You are a highly critical VC Analyst. Your primary task is to identify and rigorously evaluate *genuinely relevant and actionable* potential synergies between a new pitch (Folder A company) and an existing portfolio company (Folder B company). Your analysis must be grounded in the core business activities and strategic goals of both entities. Avoid superficial or impractical suggestions.
 
     **Portfolio Company (Folder B):** {portfolio_company_name}
     **Portfolio Company Details:** {portfolio_content}
@@ -108,40 +101,44 @@ def analyze_synergy(pitch_company_name, pitch_content, portfolio_company_name, p
     **New Pitch Company (Folder A):** {pitch_company_name}
     **New Pitch Company Details:** {pitch_content}
 
-    **Synergy Evaluation Framework:**
+    **Synergy Evaluation Framework (Strictly Adhere to This):**
     {synergy_criteria_text}
 
-    **Instructions:**
-    1.  Based on the details of both companies and the Synergy Evaluation Framework, provide an insightful explanation of potential synergies. Consider if the Folder B company could be a client, partner, etc., of the Folder A company, or vice-versa.
-    2.  For each identified potential synergy, assess it based on the following categories (from the framework):
-        *   **Synergy Type:** (e.g., Client Relationship, Channel Expansion, Technology Integration, etc. - pick from the provided list in the framework)
-        *   **Feasibility:** (How easily can it be executed? Consider integration complexity, legal barriers, cultural fit.)
-        *   **Scalability:** (Is this a one-off opportunity or a repeatable growth lever?)
-        *   **Defensibility:** (Does the synergy create a moat? e.g., exclusive partnership, unique tech integration)
-        *   **Alignment with Goals:** (Does this help the portfolio company hit its KPIs? e.g., revenue, market share, product roadmap)
-    3.  Identify any **Red Flags (False Synergies):** (e.g., One-Sided Value, High Execution Cost, Strategic Misalignment - pick from the provided list in the framework if applicable).
-    4.  Classify the overall synergy potential as: **Immediate Opportunity**, **Strategic Long-Term Play**, or **Low Priority**.
-    5.  Provide a concise **Explanation for Introduction:** This explanation will be used in an email introducing the two companies. It should be compelling and clearly state the core reason for the introduction based on the most promising synergy.
+    **Critical Instructions:**
+    1.  **Relevance First:** Based on the detailed descriptions of both companies and the Synergy Evaluation Framework, provide an insightful explanation ONLY for potential synergies that are *highly relevant and strategically sound* for the **Portfolio Company (Folder B)**. Consider if the Folder B company could realistically become a client, partner, etc., of the Folder A company, or vice-versa, in a way that significantly benefits Folder B's objectives.
+    2.  **Critical Assessment:** For each *genuinely relevant* synergy identified, assess it meticulously based on ALL the following categories from the framework:
+        *   **Synergy Type:** (e.g., Client Relationship, Channel Expansion, Technology Integration, etc. - pick from the provided list in the framework. Be specific.)
+        *   **Feasibility:** (How easily can it be executed? Critically assess integration complexity, legal/regulatory hurdles, cultural fit, and resource requirements.)
+        *   **Scalability:** (Is this a one-off, limited opportunity, or a repeatable, significant growth lever for Folder B?)
+        *   **Defensibility:** (Does the synergy create a *strong, sustainable* competitive advantage or moat for Folder B?)
+        *   **Alignment with {portfolio_company_name}'s (Folder B) Goals:** (Does this synergy *directly and significantly* help {portfolio_company_name} achieve its stated KPIs or strategic objectives? Be specific.)
+    3.  **Identify Red Flags:** For each proposed synergy, actively look for and clearly state any **Red Flags (False Synergies)** as defined in the framework (e.g., One-Sided Value, High Execution Cost, Strategic Misalignment for Folder B).
+    4.  **Overall Synergy Classification (Be Decisive):**
+        *   Classify the *overall synergy potential for {portfolio_company_name} (Folder B)* with {pitch_company_name} (Folder A) as: **Immediate Opportunity**, **Strategic Long-Term Play**, or **Low Priority**.
+        *   **If no significant, actionable, or relevant synergy is identified after critical evaluation, or if red flags outweigh potential benefits for Folder B, you MUST classify it as 'Low Priority' and explicitly state 'No significant actionable synergy identified at this time.' or a similar clear statement indicating a lack of strong fit.**
+    5.  **Explanation for Introduction (Only if a viable synergy exists):**
+        *   If, and ONLY IF, you identify an 'Immediate Opportunity' or a strong 'Strategic Long-Term Play' with clear benefits for {portfolio_company_name} (Folder B), provide a concise **Explanation for Introduction**. This explanation will be used in an email. It must be compelling, specific, and clearly state the *single most promising and relevant reason* for the introduction from {portfolio_company_name}'s perspective.
+        *   **If the classification is 'Low Priority' or no significant synergy is found, state 'No introduction recommended at this time due to lack of strong, actionable synergy.'**
 
-    **Output Format:**
-    Please structure your response clearly. For example:
+    **Output Format (Strictly Adhere to This):**
+    Please structure your response clearly. If no relevant synergy is found, state it clearly under the Overall Synergy Classification and for the Explanation for Introduction.
 
     **Synergy Analysis for {pitch_company_name} with {portfolio_company_name}:**
 
-    **1. Potential Synergy: [Describe the synergy, e.g., {portfolio_company_name} as a Client for {pitch_company_name}]**
+    **1. Potential Synergy: [Describe the *most relevant* synergy, e.g., {portfolio_company_name} as a Client for {pitch_company_name}]** (Only if a relevant synergy exists)
        *   **Synergy Type:** [e.g., Client Relationship]
-       *   **Feasibility:** [Your assessment]
-       *   **Scalability:** [Your assessment]
-       *   **Defensibility:** [Your assessment]
-       *   **Alignment with Goals ({portfolio_company_name}):** [Your assessment]
-       *   **Red Flags:** [e.g., None identified / or describe red flag]
+       *   **Feasibility:** [Your critical assessment]
+       *   **Scalability:** [Your critical assessment]
+       *   **Defensibility:** [Your critical assessment]
+       *   **Alignment with Goals ({portfolio_company_name}):** [Your critical assessment related to Folder B]
+       *   **Red Flags:** [e.g., None identified / or describe red flag(s) clearly]
 
-    **2. Potential Synergy: [Describe another synergy, if any]**
+    **(Optional) 2. Potential Synergy: [Describe another *highly relevant* synergy, if any]**
        *   ...
 
-    **Overall Synergy Classification:** [Immediate Opportunity / Strategic Long-Term Play / Low Priority]
+    **Overall Synergy Classification:** [Immediate Opportunity / Strategic Long-Term Play / Low Priority - If Low Priority due to no strong synergy, add: 'No significant actionable synergy identified at this time.']
 
-    **Explanation for Introduction:** [Your concise explanation for the email introduction]
+    **Explanation for Introduction:** [Your concise explanation for the email introduction, or 'No introduction recommended at this time due to lack of strong, actionable synergy.']
     """
 
     try:
@@ -159,18 +156,18 @@ def analyze_synergy(pitch_company_name, pitch_content, portfolio_company_name, p
 
 # --- Report Generation ---
 def generate_report_for_portfolio_company(portfolio_company_name, portfolio_cofounders, synergy_analyses, output_folder_c):
-    """Generates a single report document for a portfolio company, containing all its synergy analyses."""
+    """Generates a single PDF report document for a portfolio company, containing all its synergy analyses."""
     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-    # LLM to recommend report format - for now, let's use Markdown for better readability.
-    report_filename = os.path.join(output_folder_c, f"{portfolio_company_name}_Synergy_Report_{timestamp}.md")
+    report_filename_pdf = os.path.join(output_folder_c, f"{portfolio_company_name}_Synergy_Report_{timestamp}.pdf")
     
-    report_content = f"# Synergy Report for {portfolio_company_name}\n\n"
-    report_content += f"**Date Generated:** {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n"
-    report_content += f"This report outlines potential synergies between {portfolio_company_name} and various new pitches evaluated.\n\n"
-    report_content += "---\n"
+    # 1. Assemble Markdown content (as before)
+    report_content_md = f"# Synergy Report for {portfolio_company_name}\n\n"
+    report_content_md += f"**Date Generated:** {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n"
+    report_content_md += f"This report outlines potential synergies between {portfolio_company_name} and various new pitches evaluated.\n\n"
+    report_content_md += "---\n"
 
     if not synergy_analyses:
-        report_content += "No potential synergies identified with the evaluated pitches.\n"
+        report_content_md += "No potential synergies identified with the evaluated pitches.\n"
     else:
         for analysis in synergy_analyses:
             pitch_company_name = analysis['pitch_company_name']
@@ -178,31 +175,120 @@ def generate_report_for_portfolio_company(portfolio_company_name, portfolio_cofo
             introduction_explanation = analysis['introduction_explanation'] # This should be extracted from LLM output
             detailed_analysis = analysis['detailed_analysis'] # Full LLM output for this pair
 
-            # Formal email style introduction
-            report_content += f"## Potential Introduction: {portfolio_company_name} & {pitch_company_name}\n\n"
-            report_content += f"**To:** {portfolio_cofounders} (Team at {portfolio_company_name})\n"
-            report_content += f"**From:** [Your Name/VC Firm Name]\n"
-            report_content += f"**Subject:** Introduction: {portfolio_company_name} & {pitch_company_name}\n\n"
+            report_content_md += f"## Potential Introduction: {portfolio_company_name} & {pitch_company_name}\n\n"
+            report_content_md += f"**To:** {portfolio_cofounders} (Team at {portfolio_company_name})\n"
+            report_content_md += f"**From:** [Your Name/VC Firm Name]\n"
+            report_content_md += f"**Subject:** Introduction: {portfolio_company_name} & {pitch_company_name}\n\n"
             team_placeholder_greeting = f'the Team at {portfolio_company_name}'
             actual_greeting_recipient = portfolio_cofounders if portfolio_cofounders != team_placeholder_greeting else 'Team'
-            report_content += f"Hi {actual_greeting_recipient},\n\n"
-            report_content += f"I hope this email finds you well.\n\n"
-            report_content += f"I'd like to introduce you to {pitch_cofounders} of {pitch_company_name}. "
-            report_content += f"{introduction_explanation}\n\n"
-            report_content += f"I believe there could be a valuable connection here. Please find a more detailed synergy analysis below.\n\n"
-            report_content += f"Best regards,\n[Your Name]\n\n"
-            report_content += f"### Detailed Synergy Analysis: {pitch_company_name} with {portfolio_company_name}\n\n"
-            report_content += f"{detailed_analysis}\n\n"
-            report_content += "---\n\n"
+            report_content_md += f"Hi {actual_greeting_recipient},\n\n"
+            report_content_md += f"I hope this email finds you well.\n\n"
+            report_content_md += f"I'd like to introduce you to {pitch_cofounders} of {pitch_company_name}. "
+            report_content_md += f"{introduction_explanation}\n\n"
+            report_content_md += f"I believe there could be a valuable connection here. Please find a more detailed synergy analysis below.\n\n"
+            report_content_md += f"Best regards,\n[Your Name]\n\n"
+            report_content_md += f"### Detailed Synergy Analysis: {pitch_company_name} with {portfolio_company_name}\n\n"
+            # Ensure the detailed_analysis (LLM output) is treated as pre-formatted text if it contains Markdown-like structures
+            # or ensure it's clean text that markdown2 can process.
+            # For now, assuming detailed_analysis is mostly plain text or simple markdown that will be converted.
+            report_content_md += f"{detailed_analysis}\n\n"
+            report_content_md += "---\n\n"
 
+    # 2. Convert Markdown to HTML
+    html_content = markdown2.markdown(report_content_md, extras=["tables", "fenced-code-blocks", "break-on-newline"])
+
+    # 3. Define CSS for professional formatting
+    # Using NotoSansCJK for potential CJK characters as per best practice, and a generic sans-serif fallback.
+    css_styles = """
+    @page {
+        size: A4;
+        margin: 2cm;
+    }
+    body {
+        font-family: "Noto Sans CJK SC", "WenQuanYi Zen Hei", sans-serif;
+        line-height: 1.6;
+        color: #333;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        font-family: "Noto Sans CJK SC", "WenQuanYi Zen Hei", sans-serif;
+        color: #111;
+        margin-top: 1.5em;
+        margin-bottom: 0.5em;
+        line-height: 1.3;
+    }
+    h1 {
+        font-size: 24pt;
+        border-bottom: 2px solid #333;
+        padding-bottom: 0.3em;
+    }
+    h2 {
+        font-size: 18pt;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 0.2em;
+    }
+    h3 {
+        font-size: 14pt;
+    }
+    p {
+        margin-bottom: 1em;
+    }
+    strong, b {
+        font-weight: bold;
+    }
+    em, i {
+        font-style: italic;
+    }
+    ul, ol {
+        margin-left: 20px;
+        margin-bottom: 1em;
+    }
+    li {
+        margin-bottom: 0.5em;
+    }
+    hr {
+        border: 0;
+        height: 1px;
+        background: #ccc;
+        margin: 2em 0;
+    }
+    pre {
+        background-color: #f5f5f5;
+        padding: 10px;
+        border-radius: 4px;
+        overflow-x: auto;
+        white-space: pre-wrap;       /* CSS3 */
+        white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+        white-space: -pre-wrap;      /* Opera 4-6 */
+        white-space: -o-pre-wrap;    /* Opera 7 */
+        word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    }
+    code {
+        font-family: monospace;
+        background-color: #f0f0f0;
+        padding: 0.2em 0.4em;
+        border-radius: 3px;
+    }
+    """
+    font_config = FontConfiguration()
+    css = CSS(string=css_styles, font_config=font_config)
+
+    # 4. Generate PDF
     try:
-        with open(report_filename, 'w', encoding='utf-8') as f:
-            f.write(report_content)
-        print(f"Synergy report saved to {report_filename}")
-        return report_filename
+        HTML(string=html_content).write_pdf(report_filename_pdf, stylesheets=[css], font_config=font_config)
+        print(f"Synergy PDF report saved to {report_filename_pdf}")
+        return report_filename_pdf
     except Exception as e:
-        print(f"Error saving report {report_filename}: {e}")
+        print(f"Error saving PDF report {report_filename_pdf}: {e}")
+        # Fallback to saving as MD if PDF fails, or handle error differently
+        md_fallback_filename = report_filename_pdf.replace(".pdf", "_fallback.md")
+        try:
+            with open(md_fallback_filename, 'w', encoding='utf-8') as f:
+                f.write("Error generating PDF. Markdown content fallback:\n\n" + report_content_md)
+            print(f"PDF generation failed. Markdown fallback saved to {md_fallback_filename}")
+        except Exception as e_md:
+            print(f"Error saving Markdown fallback: {e_md}")
         return None
+
 
 # --- Original Analysis Functions (from main.py, with toggle) ---
 # These are placeholders and would need advisory_considerations.txt and judging_criteria.txt
@@ -248,7 +334,7 @@ def main():
     # Create output directory if it doesn't exist
     os.makedirs(folder_c_path, exist_ok=True)
 
-    # Load synergy criteria (from analysis_criteria.txt)
+    # Load synergy criteria (from pasted_content.txt)
     # This file should be in the same directory as the script or provide a path.
     synergy_criteria_file = "analysis_criteria.txt"
     synergy_criteria_text = ""
