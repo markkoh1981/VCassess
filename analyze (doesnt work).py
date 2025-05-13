@@ -91,59 +91,81 @@ def extract_cofounder_names(text_content, company_name_a):
 def analyze_synergy(pitch_company_name, pitch_content, portfolio_company_name, portfolio_content, synergy_criteria_text):
     """Analyzes synergy between a pitch and a portfolio company using LLM."""
     print(f"Analyzing synergy between {pitch_company_name} and {portfolio_company_name}...")
-    
     prompt = f"""
     You are a highly critical VC Analyst. Your primary task is to identify and rigorously evaluate *genuinely relevant and actionable* potential synergies between a new pitch (Folder A company) and an existing portfolio company (Folder B company). Your analysis must be grounded in the core business activities and strategic goals of both entities. Avoid superficial or impractical suggestions.
 
-    **Portfolio Company (Folder B):** {portfolio_company_name}
-    **Portfolio Company Details:** {portfolio_content}
+    **Portfolio Company (Folder B):** {{portfolio_company_name}}
+    **Portfolio Company Details:** {{portfolio_content}}
 
-    **New Pitch Company (Folder A):** {pitch_company_name}
-    **New Pitch Company Details:** {pitch_content}
+    **New Pitch Company (Folder A):** {{pitch_company_name}}
+    **New Pitch Company Details:** {{pitch_content}}
 
     **Synergy Evaluation Framework (Strictly Adhere to This):**
-    {synergy_criteria_text}
+    {{synergy_criteria_text}}
 
-    **Critical Instructions:**
-    1.  **Relevance First:** Based on the detailed descriptions of both companies and the Synergy Evaluation Framework, provide an insightful explanation ONLY for potential synergies that are *highly relevant and strategically sound* for the **Portfolio Company (Folder B)**. Consider if the Folder B company could realistically become a client, partner, etc., of the Folder A company, or vice-versa, in a way that significantly benefits Folder B's objectives.
+    **Critical Instructions (Read and Follow ALL Carefully):**
+
+    0.  **Crucial: Handling Insufficient Information:**
+        *   If the provided 'Portfolio Company Details' or 'New Pitch Company Details' are too vague, lack specific information about their business model, target market, products/services, strategic goals, or are otherwise insufficient for you to perform a rigorous analysis based on the Synergy Evaluation Framework, **you MUST NOT invent details or proceed with a hypothetical analysis.**
+        *   Instead, you MUST output the following structure ONLY:
+            **Synergy Analysis for {{pitch_company_name}} with {{portfolio_company_name}}:**
+
+            **Overall Synergy Classification:** Low Priority - Insufficient Information for Analysis.
+
+            **Reason for Insufficient Information:**
+            *   For Portfolio Company ({{portfolio_company_name}}): [Clearly list specific missing information, e.g., "Missing details on current strategic partnerships and target client profiles for new initiatives."]
+            *   For New Pitch Company ({{pitch_company_name}}): [Clearly list specific missing information, e.g., "Missing details on technology stack, revenue model, and go-to-market strategy."]
+
+            **Explanation for Introduction:** No introduction recommended due to insufficient information for a meaningful analysis.
+        *   **If this condition is met, STOP HERE. Do not attempt to provide any further synergy details or follow the other instructions below.**
+
+    1.  **Relevance First (Proceed only if information is sufficient):**
+        *   Based on the detailed descriptions of both companies and the Synergy Evaluation Framework, provide an insightful explanation ONLY for potential synergies that are *highly relevant and strategically sound* for the **Portfolio Company (Folder B)**.
+        *   Consider if the Folder B company could realistically become a client, partner, etc., of the Folder A company, or vice-versa, in a way that significantly benefits Folder B's objectives.
+        *   When evaluating relevance for the **Portfolio Company ({{portfolio_company_name}})**, pay close attention to its specific business model (e.g., if it's Liquify, consider its role in unlocking vested stakes for investors and its ideal partners like fintech companies, Real World Asset (RWA) projects, cryptocurrency exchanges, or startup accelerators). Synergies should directly support these core activities and partner profiles.
+
     2.  **Critical Assessment:** For each *genuinely relevant* synergy identified, assess it meticulously based on ALL the following categories from the framework:
         *   **Synergy Type:** (e.g., Client Relationship, Channel Expansion, Technology Integration, etc. - pick from the provided list in the framework. Be specific.)
         *   **Feasibility:** (How easily can it be executed? Critically assess integration complexity, legal/regulatory hurdles, cultural fit, and resource requirements.)
         *   **Scalability:** (Is this a one-off, limited opportunity, or a repeatable, significant growth lever for Folder B?)
         *   **Defensibility:** (Does the synergy create a *strong, sustainable* competitive advantage or moat for Folder B?)
-        *   **Alignment with {portfolio_company_name}'s (Folder B) Goals:** (Does this synergy *directly and significantly* help {portfolio_company_name} achieve its stated KPIs or strategic objectives? Be specific.)
-    3.  **Identify Red Flags:** For each proposed synergy, actively look for and clearly state any **Red Flags (False Synergies)** as defined in the framework (e.g., One-Sided Value, High Execution Cost, Strategic Misalignment for Folder B).
-    4.  **Overall Synergy Classification (Be Decisive):**
-        *   Classify the *overall synergy potential for {portfolio_company_name} (Folder B)* with {pitch_company_name} (Folder A) as: **Immediate Opportunity**, **Strategic Long-Term Play**, or **Low Priority**.
-        *   **If no significant, actionable, or relevant synergy is identified after critical evaluation, or if red flags outweigh potential benefits for Folder B, you MUST classify it as 'Low Priority' and explicitly state 'No significant actionable synergy identified at this time.' or a similar clear statement indicating a lack of strong fit.**
-    5.  **Explanation for Introduction (Only if a viable synergy exists):**
-        *   If, and ONLY IF, you identify an 'Immediate Opportunity' or a strong 'Strategic Long-Term Play' with clear benefits for {portfolio_company_name} (Folder B), provide a concise **Explanation for Introduction**. This explanation will be used in an email. It must be compelling, specific, and clearly state the *single most promising and relevant reason* for the introduction from {portfolio_company_name}'s perspective.
-        *   **If the classification is 'Low Priority' or no significant synergy is found, state 'No introduction recommended at this time due to lack of strong, actionable synergy.'**
+        *   **Alignment with {{portfolio_company_name}}'s (Folder B) Goals:** (Does this synergy *directly and significantly* help {{portfolio_company_name}} achieve its stated KPIs or strategic objectives? Be specific.)
 
-    **Output Format (Strictly Adhere to This):**
+    3.  **Identify Red Flags:** For each proposed synergy, actively look for and clearly state any **Red Flags (False Synergies)** as defined in the framework (e.g., One-Sided Value, High Execution Cost, Strategic Misalignment for Folder B).
+
+    4.  **Ecosystem Considerations (Web2/Web3):** If the companies operate in significantly different ecosystems (e.g., one is a traditional Web2 business, the other is Web3 native), briefly note if this presents specific integration challenges or unique opportunities for the proposed synergy. This should be a practical consideration related to feasibility or strategic alignment.
+
+    5.  **Overall Synergy Classification (Be Decisive):**
+        *   Classify the *overall synergy potential for {{portfolio_company_name}} (Folder B)* with {{pitch_company_name}} (Folder A) as: **Immediate Opportunity**, **Strategic Long-Term Play**, or **Low Priority**.
+        *   **If no significant, actionable, or relevant synergy is identified after critical evaluation, or if red flags outweigh potential benefits for Folder B, you MUST classify it as 'Low Priority' and explicitly state 'No significant actionable synergy identified at this time.' or a similar clear statement indicating a lack of strong fit.** (This is distinct from "Low Priority - Insufficient Information for Analysis").
+
+    6.  **Explanation for Introduction (Only if a viable synergy exists):**
+        *   If, and ONLY IF, you identify an 'Immediate Opportunity' or a strong 'Strategic Long-Term Play' with clear benefits for {{portfolio_company_name}} (Folder B), provide a concise **Explanation for Introduction**. This explanation will be used in an email. It must be compelling, specific, and clearly state the *single most promising and relevant reason* for the introduction from {{portfolio_company_name}}'s perspective.
+        *   **If the classification is 'Low Priority' (either due to lack of strong synergy or insufficient information as per instruction 0), state 'No introduction recommended at this time due to lack of strong, actionable synergy or insufficient information.'**
+
+    **Output Format (Strictly Adhere to This if information was sufficient for full analysis as per Instruction 0):**
     Please structure your response clearly. If no relevant synergy is found, state it clearly under the Overall Synergy Classification and for the Explanation for Introduction.
 
-    **Synergy Analysis for {pitch_company_name} with {portfolio_company_name}:**
+    **Synergy Analysis for {{pitch_company_name}} with {{portfolio_company_name}}:**
 
-    **1. Potential Synergy: [Describe the *most relevant* synergy, e.g., {portfolio_company_name} as a Client for {pitch_company_name}]** (Only if a relevant synergy exists)
+    **1. Potential Synergy: [Describe the *most relevant* synergy, e.g., {{portfolio_company_name}} as a Client for {{pitch_company_name}}]** (Only if a relevant synergy exists)
        *   **Synergy Type:** [e.g., Client Relationship]
        *   **Feasibility:** [Your critical assessment]
        *   **Scalability:** [Your critical assessment]
        *   **Defensibility:** [Your critical assessment]
-       *   **Alignment with Goals ({portfolio_company_name}):** [Your critical assessment related to Folder B]
+       *   **Alignment with Goals ({{portfolio_company_name}}):** [Your critical assessment related to Folder B]
+       *   **Ecosystem Considerations (Web2/Web3):** [Your brief assessment, if applicable]
        *   **Red Flags:** [e.g., None identified / or describe red flag(s) clearly]
 
     **(Optional) 2. Potential Synergy: [Describe another *highly relevant* synergy, if any]**
-       *   ...
+       *   ... (include Ecosystem Considerations here too)
 
     **Overall Synergy Classification:** [Immediate Opportunity / Strategic Long-Term Play / Low Priority - If Low Priority due to no strong synergy, add: 'No significant actionable synergy identified at this time.']
 
     **Explanation for Introduction:** [Your concise explanation for the email introduction, or 'No introduction recommended at this time due to lack of strong, actionable synergy.']
     """
-
-    try:
-        response = ollama.chat(
-            model="deepseek-r1:latest", # As per user's existing setup
+    response = ollama.chat(
+            model="llama3.2:latest", # As per user's existing setup
             messages=[
                 {"role": "system", "content": "You are a VC Analyst specializing in synergy identification between startups."},
                 {"role": "user", "content": prompt}
