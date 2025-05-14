@@ -1,10 +1,12 @@
 
 Context:
 The investor considering the advisory is Mark G. Koh
+Advisory deals take up time / bandwidth and the value of an advisory deal is to be able to access an allocation or equity of the target project in exchange for consultation.
 
+Mark G. Koh's angel investment profile:
 Angel Investor
 
-Ticket size: 20k to 50k
+Ticket size: 20k to 50k, 4 deals a year.
 Early stage, syndicates
 Keen on: depin, Gamefi 
 Not keen on: socialfi
@@ -29,7 +31,7 @@ http://Monstro.fun (defi)
 http://All.art 
 Http://deverse.world (Gamefi)
 
-Mark is also based in singapore (+8 GMT timezone) and travels around asia pacific frequently
+Mark is also based in singapore (+8 GMT timezone) and travels around asia pacific frequently, the location of the project in question would determine the convenience of advising them. Also culture fit with Mark as a Singaporean Chinese person.
 
 Advisor Best Practices:
 

@@ -207,3 +207,8 @@ Liquidity-Free VC
 Empower users to act as their own venture capitalists without requiring liquidity upfront.
 
 Our roadmap reflects our commitment to continuous innovation and community growth. With these milestones, we aim to make Liquify the go-to platform for decentralized and tokenized investments.
+
+
+Liquify typically partners with 
+accelerators - because accelerators have curated startups that can bring investors on board liquify to use liquify's synthetic tokens to allow retail investors access to their deals in exchange for exiting a portion (or all) of their position. 
+VCs, launchpads also serve the same roles as potential channel partners with Liquify.

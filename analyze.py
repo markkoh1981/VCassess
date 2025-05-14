@@ -72,7 +72,7 @@ def extract_cofounder_names(text_content, company_name_a):
 
     try:
         response = ollama.chat(
-            model="llama3.2:latest",
+            model="qwen3:0.6b", # using the smallest qwen parameter model for speed
             messages=[
                 {"role": "system", "content": "You are an expert in extracting cofounder names from text."},
                 {"role": "user", "content": prompt}
@@ -143,7 +143,7 @@ def analyze_synergy(pitch_company_name, pitch_content, portfolio_company_name, p
 
     try:
         response = ollama.chat(
-            model="deepseek-r1:latest", # As per user's existing setup
+            model="gemma3:12b-it-qat", # As per user's existing setup
             messages=[
                 {"role": "system", "content": "You are a VC Analyst specializing in synergy identification between startups."},
                 {"role": "user", "content": prompt}
@@ -301,13 +301,36 @@ def advisory_potential(text):
 
 def assess_risk(text):
     if not RUN_ORIGINAL_ANALYSIS: return "Risk assessment skipped."
-    # ... (original code from main.py)
-    return "Risk assessed (mock)."
+    """Assess the investibility and risk of the deck."""
+    try:
+        response = ollama.chat(  
+            model="llama3.2:latest",  # Replace with your actual model name
+            messages=[
+                {"role": "system", "content": "You are a financial analyst assessing risk."},
+                {"role": "user", "content": f"Analyze this text extracted from a pdf deck. Return a report on the investibility potential returns: {text}"}
+            ]
+        )
+        return response['message']['content']
+    except Exception as e:
+        raise ValueError(f"Error in risk assessment: {e}")
 
 def project_scoring(text):
     if not RUN_ORIGINAL_ANALYSIS: return "Project scoring skipped."
-    # ... (original code from main.py, ensure 'judging_criteria.txt' is accessible)
-    return "Project scored (mock)."
+    """Score the project based on criteria."""
+    try:
+        with open('judging_criteria.txt', 'r', encoding='utf-8') as f:
+                    scoring = f.read()
+        
+        response = ollama.chat(  # Corrected to chat.completions.create
+            model="llama3.2:latest",  # Replace with your actual model name
+            messages=[
+                {"role": "system", "content": "You are a expert startup and business judge."},
+                {"role": "user", "content": f"assess the startup with their data here {text} based strictly on the following criteria: \n{scoring}\n\n use assumptions if necessary."}
+            ]
+        )
+        return response['message']['content']
+    except Exception as e:
+        raise ValueError(f"Error in ROI projection: {e}")
 
 def generate_recommendations(text):
     if not RUN_ORIGINAL_ANALYSIS: return "Recommendations generation skipped."
